@@ -160,25 +160,31 @@
     <main>
         <div class="container">
             <div class="page-content">
+                {% for person in persona %}
                 <div class="hero-section">
-                    <div class="profile-image">T</div>
-                    <h1>{{ name }}</h1>
-                    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">{{ welcome_text }}</p>
+
+                    <div class="{{ person.image.url }}">
+                        <img src ="{{ person.image.url }}" alt="{{person.title}}">
+                    </div>
+                    <h1>{{ person.name }}</h1>
+                    <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">{{person.welcome_text }}</p>
                 </div>
+                {% endfor %}
 
                 <div class="skills-grid">
-                    {% for skill in skills %}
+                    {% for skill in skill %}
                     <div class="skill-card">
                         <h3>{{ skill.icon }} {{ skill.title }}</h3>
-                        <p>{{ skill.description }}</p>
+                        <p>{{ skill.tools }}</p>
                     </div>
                     {% endfor %}
                 </div>
-
+                  {% for person in persona %}
                 <div class="aspirations">
-                    <h2>{{ aspirations.title }}</h2>
-                    <p>{{ aspirations.content }}</p>
+                    <h2>{{person.aspiration }}</h2>
+                    <!-- <p>{{ aspirations.content }}</p> -->
                 </div>
+                {% endfor %}
             </div>
         </div>
     </main>

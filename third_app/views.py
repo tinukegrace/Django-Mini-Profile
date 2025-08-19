@@ -1,35 +1,45 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import PersonalInfo, Skill
+
 
 # Create your views here.
 
 def home(request):
-   
+    """SELECT * FROM PersonalInfo"""
+    persona = PersonalInfo.objects.all()[0:1]
+    skill= Skill.objects.all()
     context = {
-        'name': 'Ogun Tinuke Grace',
-        'welcome_text': 'Welcome to my digital portfolio',
-        'skills': [
-            {
-                'icon': '💻',
-                'title': 'Programming',
-                'description': 'Python, HTML/CSS, Django'
-            },
-            {
-                'icon': '📊',
-                'title': 'Data Analysis',
-                'description': 'Excel, SQL, Data Visualization'
-            },
-            {
-                'icon': '🗣️',
-                'title': 'Communication',
-                'description': ' Technical Writing'
-            }
-        ],
-        'aspirations': {
-            'title': 'My Aspirations',
-            'content': 'I aspire to become a full-stack developer who creates meaningful digital experiences that solve real-world problems. My goal is to work with innovative teams that push the boundaries of technology while making a positive impact on society. I\'m passionate about continuous learning and staying at the forefront of emerging technologies.'
-        }
+        'persona':persona,
+        'skill':Skill.objects.all()
     }
+
+   
+    # context = {
+    #     'name': 'Ogun Tinuke Grace',
+    #     'welcome_text': 'Welcome to my digital portfolio',
+    #     'skills': [
+    #         {
+    #             'icon': '💻',
+    #             'title': 'Programming',
+    #             'description': 'Python, HTML/CSS, Django'
+    #         },
+    #         {
+    #             'icon': '📊',
+    #             'title': 'Data Analysis',
+    #             'description': 'Excel, SQL, Data Visualization'
+    #         },
+    #         {
+    #             'icon': '🗣️',
+    #             'title': 'Communication',
+    #             'description': ' Technical Writing'
+    #         }
+    #     ],
+    #     'aspirations': {
+    #         'title': 'My Aspirations',
+    #         'content': 'I aspire to become a full-stack developer who creates meaningful digital experiences that solve real-world problems. My goal is to work with innovative teams that push the boundaries of technology while making a positive impact on society. I\'m passionate about continuous learning and staying at the forefront of emerging technologies.'
+    #     }
+    # }
     return render(request, 'home.html', context)
 
 def about(request):
